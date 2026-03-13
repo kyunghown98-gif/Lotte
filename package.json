@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/kyunghown98-gif/Lotte.git",
+  "homepage": "https://kyunghown98-gif.github.io/Lotte/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
