@@ -6,7 +6,7 @@ import '../css/Destinations.css'
 
 const items = [
   {
-    id: 1, category: "국내", name: "서울", img: "../lotte/서울.webp",
+    id: 1, category: "국내", name: "서울", img: "./lotte/서울.webp",
     hotel: [
       { name: "시그니엘 서울" }, { name: "롯데호텔 서울" }, { name: "롯데호텔 월드" },
       { name: "L7 명동 바이 롯데호텔" }, { name: "L7 강남 바이 롯데호텔" },
@@ -15,27 +15,27 @@ const items = [
     ]
   },
   {
-    id: 2, category: "국내", name: "부산", img: "../lotte/부산.webp",
+    id: 2, category: "국내", name: "부산", img: "./lotte/부산.webp",
     hotel: [{ name: "시그니엘 부산" }, { name: "롯데호텔 부산" }, { name: "L7 해운대 바이 롯데호텔" }]
   },
   {
-    id: 3, category: "국내", name: "제주", img: "../lotte/제주.webp",
+    id: 3, category: "국내", name: "제주", img: "./lotte/제주.webp",
     hotel: [{ name: "롯데호텔 제주" }, { name: "롯데시티호텔 제주" }, { name: "아트빌라스 제주" }]
   },
   {
-    id: 4, category: "국내", name: "울산", img: "../lotte/울산.webp",
+    id: 4, category: "국내", name: "울산", img: "./lotte/울산.webp",
     hotel: [{ name: "롯데호텔 울산" }, { name: "롯데시티호텔 울산" }]
   },
   {
-    id: 5, category: "국내", name: "대전", img: "../lotte/대전.webp",
+    id: 5, category: "국내", name: "대전", img: "./lotte/대전.webp",
     hotel: [{ name: "롯데시티호텔 대전" }]
   },
   {
-    id: 6, category: "국내", name: "광주", img: "../lotte/광주.webp",
+    id: 6, category: "국내", name: "광주", img: "./lotte/광주.webp",
     hotel: [{ name: "L7 충장 바이 롯데 호텔" }]
   },
   {
-    id: 7, category: "해외", name: "아시아", img: "../lotte/아시아.webp",
+    id: 7, category: "해외", name: "아시아", img: "./lotte/아시아.webp",
     hotel: [
       { name: "롯데아라이리조트" }, { name: "롯데호텔 사이공" }, { name: "롯데호텔 하노이" },
       { name: "L7웨스트 레이크 하노이 롯데호텔" }, { name: "롯데호텔 양곤" },
@@ -43,11 +43,11 @@ const items = [
     ]
   },
   {
-    id: 8, category: "해외", name: "미국", img: "../lotte/미국.webp",
+    id: 8, category: "해외", name: "미국", img: "./lotte/미국.webp",
     hotel: [{ name: "롯데뉴욕팰리스" }, { name: "롯데호텔 시애틀" }]
   },
   {
-    id: 9, category: "해외", name: "러시아", img: "../lotte/러시아.webp",
+    id: 9, category: "해외", name: "러시아", img: "./lotte/러시아.webp",
     hotel: [
       { name: "롯데호텔 모스크바" }, { name: "롯데호텔 상트페테르부르크" },
       { name: "롯데호텔 블라디보스토크" }, { name: "롯데호텔 사마라" },

@@ -38,7 +38,7 @@ const Promotion = () => {
             <div className="show_all">
               <span>전체 보기</span>
               <button className="show_all_btn">
-                <img src="/lotte/right_arrow.svg" alt="arrow" />
+                <img src="./lotte/right_arrow.svg" alt="arrow" />
               </button>
             </div>
           </div>

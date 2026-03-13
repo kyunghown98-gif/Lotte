@@ -5,28 +5,28 @@ const member =[
     {
         id:1,
         title:"숙박",
-        img:"../lotte/ico_info_room01.svg",
+        img:"./lotte/ico_info_room01.svg",
         text1:'포인트',
         text2:"최대 10% 적립"
     },
     {
         id:2,
         title:"다이닝",
-        img:"../lotte/ico_info_dining02.svg",
+        img:"./lotte/ico_info_dining02.svg",
         text1:'포인트',
         text2:'리워즈 포인트 적립,사용'
     },
     {
         id:3,
         title:"쇼핑",
-        img:"../lotte/ico_info_shopping.svg",
+        img:"./lotte/ico_info_shopping.svg",
         text1:'리워즈 포인트로',
         text2:'LOTTE DUTY FREE,e-SHOP',
     },
     {
         id:4,
         title:"제휴사 포인트 전환",
-        img:"../lotte/ico_rewards_points.svg",
+        img:"./lotte/ico_rewards_points.svg",
         text1:'리워즈 포인트를',
         text2:'L.POINT,Npay,CJ ONE'
     },

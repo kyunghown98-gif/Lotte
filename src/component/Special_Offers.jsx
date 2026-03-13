@@ -43,7 +43,7 @@ const Special_Offers = () => {
       <div className="special_i">
         <div className="top">
           <div className="bg">
-            <img src="../lotte/bg.webp" alt="bg" />
+            <img src="./lotte/bg.webp" alt="bg" />
           </div>
 
           <div className="title">
@@ -56,7 +56,7 @@ const Special_Offers = () => {
               <button className='country_btn' onClick={() => setCountryOpen(prev => !prev)}>
                 {activeCountry}
                 <span className={`circle ${countryOpen ? 'open' : ''}`}>
-                  <img src="../lotte/bottom_arrow.svg" alt="arrow" />
+                  <img src="./lotte/bottom_arrow.svg" alt="arrow" />
                 </span>
               </button>
               {countryOpen && (

@@ -147,3 +147,124 @@
     color: #666;
     line-height: 1.6;
 }
+
+/* ══════════════════════════════════════════
+   Mobile (max-width: 760px)
+══════════════════════════════════════════ */
+@media (max-width: 760px) {
+
+  /* 전체 섹션 좌우 패딩 */
+  .membership {
+    padding: 0 2rem;
+  }
+
+  /* 타이틀 + 버튼 — 세로 스택 */
+  .membership .ms_i .title_h {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2.4rem;
+  }
+
+  /* h2 줄바꿈 없이 작게 */
+  .membership .ms_i .title_h .title .top {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .membership .ms_i .title_h .title .top h2 {
+    font-size: 2.4rem;
+  }
+
+  .membership .ms_i .title_h .title .top span {
+    font-size: 1.4rem;
+  }
+.membership .ms_i .title_h .title .top h2 + span::before {
+    margin-right: .8rem;
+}
+  .membership .ms_i .title_h .title p {
+    display: none;
+  }
+
+  /* 버튼 — 타이틀 아래로 */
+  .membership .ms_i .title_h .btn {
+    margin-top: 0;
+  }
+
+  .membership .ms_i .title_h .btn .btn_i {
+    gap: 2rem;
+  }
+
+  .membership .ms_i .title_h .btn .btn_i a {
+    font-size: 1.4rem;
+  }
+  .membership .ms_i .title_h .btn .btn_i a:first-child {
+    display: none;
+  }
+
+  /* 카드 목록 — 세로 한 줄씩 */
+  .membership .ms_i .contents ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* 각 카드 — 가로 배치 (아이콘 좌 / 텍스트 우) */
+  .membership .ms_i .contents ul li {
+    width: 100%;
+    padding: 2.4rem 0;
+    border-bottom: 0.1rem solid #e8e2da;
+    text-align: left;
+  }
+
+  .membership .ms_i .contents ul li:last-child {
+    border-bottom: none;
+  }
+
+  .membership .ms_i .contents ul li .box {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* 아이콘 + 타이틀 — 좌측 고정 */
+  .membership .ms_i .contents ul li .box .tit {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.6rem;
+    flex-shrink: 0;
+    min-width: 12rem;
+  }
+
+  .membership .ms_i .contents ul li .box .tit img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .membership .ms_i .contents ul li .box .tit p {
+    font-size: 1.6rem;
+    white-space: nowrap;
+  }
+
+  /* 텍스트 — 우측 */
+  .membership .ms_i .contents ul li .box .txt {
+    flex: 1;
+    gap: 0.2rem;
+  }
+
+  .membership .ms_i .contents ul li .box .txt p {
+    font-size: 1.3rem;
+  }
+
+  /* 더 많은 혜택 알아보기 — 모바일에서 하단 링크처럼 */
+  .membership .ms_i .contents::after {
+    content: "더 많은 혜택 알아보기 →";
+    display: block;
+    text-align: right;
+    font-size: 1.4rem;
+    color: #666;
+    margin-top: 2.4rem;
+    cursor: pointer;
+  }
+}

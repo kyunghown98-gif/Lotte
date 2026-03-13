@@ -3,6 +3,11 @@
   margin-top: 10rem;
 }
 
+/* 모바일 기본 숨김 */
+.our_brand .ob_mobile {
+  display: none;
+}
+
 .our_brand .ob_wrap {
   display: flex;
 }
@@ -88,8 +93,6 @@
   transition: color 0.25s;
 }
 
-
-
 .our_brand .ob_category_item:hover {
   color: rgba(255, 255, 255, 0.85);
 }
@@ -117,9 +120,11 @@
   overflow: hidden;
   min-width: 0;
 }
-.our_brand .ob_right .content{
+
+.our_brand .ob_right .content {
   overflow: hidden;
 }
+
 .our_brand .ob_tagline {
   flex-shrink: 0;
   margin-bottom: 2.6rem;
@@ -187,7 +192,6 @@
   margin-top: 5.8rem;
 }
 
-/* 16:9 ratio */
 .our_brand .ob_card_img {
   position: relative;
   padding-top: 56.25%;
@@ -265,4 +269,265 @@
 .our_brand .ob_nav_btn:disabled {
   opacity: 0.3;
   cursor: default;
+}
+
+/* ══════════════════════════════════════════
+   Mobile (max-width: 760px)
+══════════════════════════════════════════ */
+@media (max-width: 760px) {
+
+  /* 데스크탑 숨김 */
+  .our_brand .ob_wrap {
+    display: none;
+  }
+
+  /* 모바일 표시 */
+  .our_brand .ob_mobile {
+    display: block;
+  }
+
+  /* 배경을 감싸는 inner 래퍼 — 콘텐츠 높이에 딱 맞게 배경 잘림 */
+  .our_brand .ob_mob_inner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 배경 레이어 — ob_mob_inner 기준 */
+  .our_brand .ob_mob_bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: 0;
+  }
+
+  .our_brand .ob_mob_bg.ob_mob_bg--visible {
+    opacity: 1;
+  }
+
+  .our_brand .ob_mob_overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+  }
+
+  /* ── 타이틀 (검정 박스 바깥, inner 안) ── */
+  .our_brand .ob_mob_title {
+    position: absolute;
+    top: 5.4rem;
+    left: 2rem;
+    right: 2rem;
+    z-index: 2;
+  }
+
+  .our_brand .ob_mob_title h2 {
+    font-size: 3.8rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 0.6rem;
+    letter-spacing: 0.04em;
+  }
+
+  .our_brand .ob_mob_title p {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── 트리거 + 콘텐츠박스 감싸는 래퍼 ── */
+  .our_brand .ob_mob_card_wrap {
+    position: relative;
+    z-index: 2;
+    margin: 13rem 2rem 6.4rem;
+    max-width: calc(100% - 4rem);
+  }
+
+  /* ── 트리거 래퍼 — 항상 상단 고정 ── */
+  .our_brand .ob_mob_trigger_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+  }
+
+  /* ── 트리거 버튼 ── */
+  .our_brand .ob_mob_trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    height: 7.2rem;
+    padding: 0 2.4rem;
+    background: #1a1a1a;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    text-align: left;
+    font-family: inherit;
+  }
+
+  /* 트리거 화살표 */
+  .our_brand .ob_mob_trigger_arrow {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .our_brand .ob_mob_trigger_arrow.is-open {
+    transform: rotate(180deg);
+  }
+
+  /* ── 슬라이드 드롭다운 패널 — card_wrap 기준 absolute ── */
+  .our_brand .ob_mob_dropdown_panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background: #1a1a1a;
+    overflow: hidden;
+    /* 닫힌 상태 — 트리거 높이만큼만 */
+    max-height: 7.2rem;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* 열린 상태 — 카드 이미지 절반까지 (충분히 큰 값, 실제 높이로 제한됨) */
+  .our_brand .ob_mob_dropdown_panel.is-open {
+    max-height: 60rem;
+  }
+
+  /* 트리거명 + X버튼 한 줄 */
+  .our_brand .ob_mob_trigger_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 7.2rem;
+    padding: 0 2.4rem;
+  }
+
+  .our_brand .ob_mob_trigger_txt {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.1em;
+  }
+
+  /* 닫기(X) 버튼 */
+  .our_brand .ob_mob_dropdown_close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+
+  .our_brand .ob_mob_dropdown_close:hover {
+    opacity: 1;
+  }
+
+  /* 드롭다운 목록 */
+  .our_brand .ob_mob_dropdown {
+    list-style: none;
+    padding: 0 2.4rem 2.4rem;
+    margin: 0;
+  }
+
+  /* 항목 — border 없음, 텍스트만 */
+  .our_brand .ob_mob_dropdown_item {
+    display: block;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    padding: 1.4rem 0;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .our_brand .ob_mob_dropdown_item:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .our_brand .ob_mob_dropdown_item.active {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* ── 태그라인 + 슬라이더 묶음 박스 ── */
+  .our_brand .ob_mob_content_box {
+    position: relative;
+    z-index: 2;
+    /* margin/max-width는 ob_mob_card_wrap이 담당 */
+    padding: 9.4rem 2rem 6.6rem;
+    background-color: #1a1a1ae6;
+    overflow: hidden;
+  }
+
+  /* ── 태그라인 ── */
+  .our_brand .ob_mob_tagline {
+    margin-bottom: 2.4rem;
+  }
+
+  .our_brand .ob_mob_tagline h3 {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #fff;
+    margin: 0 0 0.6rem;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    font-family: 'Georgia', 'Times New Roman', serif;
+  }
+
+  .our_brand .ob_mob_tagline h3 span {
+    display: block;
+    font-size: 2.8rem;
+  }
+
+  .our_brand .ob_mob_tagline p {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── 모바일 슬라이더 ── */
+  .our_brand .ob_mob_slider {
+    max-width: 100%;
+  }
+
+  /* 슬라이드 20.8rem 고정, 일열로 */
+  .our_brand .ob_mob_slider .ob_swiper .swiper-wrapper {
+    align-items: center;
+  }
+
+  .our_brand .ob_mob_slider .ob_swiper .swiper-slide {
+    width: 20.8rem !important;
+    max-width: 20.8rem;
+  }
+
+  /* 일열이므로 offset 없애기 */
+  .our_brand .ob_mob_slider .ob_card--offset {
+    margin-top: 0;
+  }
+
+  .our_brand .ob_mob_slider .ob_card_name {
+    font-size: 1.6rem;
+  }
 }
