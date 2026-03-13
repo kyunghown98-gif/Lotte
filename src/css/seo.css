@@ -1,0 +1,14 @@
+.seo{
+    margin: 8rem 0 ;
+}
+.seo .seo_i{
+    max-width: 140rem;
+    margin: 0 auto;
+}
+.seo .seo_i .text{
+    padding: 2.4rem 4rem;
+}
+.seo .seo_i .text p{
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+}

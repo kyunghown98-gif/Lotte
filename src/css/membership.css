@@ -1,0 +1,149 @@
+.membership{
+    margin-top: 10rem;
+}
+.membership .ms_i{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 140rem;
+}
+
+
+/* 상단 타이틀 + 버튼 영역 */
+.membership .ms_i .title_h {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+
+.membership .ms_i .title_h .title .top {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.membership .ms_i .title_h .title .top h2 {
+    font-size: 4.8rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    letter-spacing:0.2rem;
+}
+
+.membership .ms_i .title_h .title .top span {
+    font-size: 2.4rem;
+    color: #1a1a1a;
+    font-weight: 400;
+}
+
+/* 구분선 */
+.membership .ms_i .title_h .title .top h2 + span::before {
+    content: "|";
+    margin-right: 1.6rem;
+    color: #1a1a1a;
+}
+
+.membership .ms_i .title_h .title p {
+    font-size: 1.8rem;
+    color: #666;
+    font-weight: 400;
+}
+
+/* 버튼 영역 */
+.membership .ms_i .title_h .btn {
+    display: flex;
+    align-items: center;
+    margin-top: 0.6rem;
+}
+
+.membership .ms_i .title_h .btn .btn_i {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+.membership .ms_i .title_h .btn .btn_i a {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 1.4rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+
+.membership .ms_i .title_h .btn .btn_i a span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 0.1rem solid #c8c0b4;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+
+/* 화살표 */
+.membership .ms_i .title_h .btn .btn_i a span::after {
+    content: "→";
+    font-size: 1.4rem;
+    color: #666;
+}
+
+
+/* 콘텐츠 카드 영역 */
+.membership .ms_i .contents ul {
+    display: flex;
+    gap: 1.6rem;
+}
+
+.membership .ms_i .contents ul li {
+    display: flex;
+    width: calc(25% - 1.6rem);
+    padding: 5.5rem 1.6rem;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.membership .ms_i .contents ul li .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.membership .ms_i .contents ul li .box .tit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.membership .ms_i .contents ul li .box .tit img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+}
+
+.membership .ms_i .contents ul li .box .tit p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.membership .ms_i .contents ul li .box .txt {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.membership .ms_i .contents ul li .box .txt p {
+    font-size: 1.3rem;
+    color: #666;
+    line-height: 1.6;
+}

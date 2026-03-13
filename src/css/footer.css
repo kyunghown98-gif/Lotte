@@ -1,0 +1,274 @@
+.footer {
+  background-color: #111;
+  color: #ccc;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 메인 영역 */
+.footer__main {
+  padding: 6rem 0 3rem;
+}
+
+.footer__inner {
+  max-width: 140rem;
+  margin: 0 auto;
+}
+
+/* ── 상단: 로고 + 앱 ── */
+.footer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2.4rem;
+}
+
+.footer__logo {
+  font-size: 4.4rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: #fff;
+  font-family: 'Cormorant Garamond', 'Garamond', serif;
+  line-height: 1;
+}
+
+.footer__apps {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer__app-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #ccc;
+  font-size: 1.3rem;
+}
+
+.footer__app-icon { font-size: 1.4rem; }
+
+/* ── 중단: nav + 구분선 + contact ── */
+.footer__body {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+}
+
+/* 네비 컬럼들 */
+.footer__nav {
+  display: flex;
+  gap: 6rem;
+  flex: 1;
+  justify-content: space-between;
+  padding-right: 6rem;
+}
+
+.footer__col {
+  min-width: 0;
+}
+
+.footer__col-title {
+  font-size: 2.4rem;
+    line-height: 4rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 2rem;
+  font-family: 'Cormorant Garamond', 'Garamond', serif;
+}
+
+.footer__col-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.footer__col-list a {
+  font-size: 1.6rem;
+    line-height: 2.8rem;
+    font-weight: 400;
+    margin-top: 1.2rem;
+    color: #fff;
+  white-space: nowrap;
+
+}
+
+/* 세로 구분선 */
+.footer__divider {
+  width: 0.1rem;
+  background-color: #333;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* 컨택트 */
+.footer__contact {
+  flex: 0 0 45.5rem;
+  padding-left: 6rem;
+}
+
+.footer__address {
+  font-style: normal;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer__address p {
+  font-size: 1.3rem;
+  color: #999;
+  line-height: 1.6;
+}
+
+/* Family Site */
+.footer__family {
+  margin-top: 2.5rem;
+  border-bottom: 0.1rem solid #444;
+  position: relative;  /* ← 기준점 */
+}
+
+.footer__family-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1.2rem 0;
+  color: #ccc;
+}
+
+.footer__family-btn em {
+  font-style: italic;
+  font-size: 1.6rem;
+    line-height: 2.8rem;
+    font-weight: 400;
+  font-family: 'Cormorant Garamond', 'Garamond', serif;
+  color: #ccc;
+}
+
+.footer__family-icon {
+  font-size: 1.8rem;
+  color: #ccc;
+  line-height: 1;
+}
+.footer__family-icon.open { transform: rotate(45deg); }
+
+.footer__family-dropdown {
+  position: absolute;
+  bottom: 100%;        /* 버튼 위쪽에 붙음 */
+  left: 0;
+  right: 0;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+  border-radius: 1rem;
+  
+}
+.footer__family-dropdown::-webkit-scrollbar {
+  width: 0.3rem;
+}
+/* 스크롤바 막대기 */
+.footer__family-dropdown::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 0.2rem;
+}
+/* 화살표 제거 */
+.footer__family-dropdown::-webkit-scrollbar-button {
+  display: none;
+}
+.footer__family-dropdown.open {
+  max-height: 27.7rem;
+  overflow: auto;
+}
+.footer__family-dropdown a {
+  font-size: 1.4rem;
+  color: #fff;
+  padding: 1.2rem 1.6rem;
+  text-decoration: none;
+}
+
+/* SNS */
+.footer__sns {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 2.5rem;
+}
+
+.footer__sns-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: 0.1rem solid #444;
+  border-radius: 50%;
+  color: #999;
+}
+
+
+.footer__sns-blog {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #999;
+}
+
+/* ── 하단: ── */
+
+
+.footer__policy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.footer__policy a {
+  font-size: 1.6rem;
+    line-height: 2.8rem;
+    font-weight: 400;
+  color: #777;
+}
+
+
+.footer__policy--bold {
+  font-weight: 700;
+  color: #ccc !important;
+}
+
+.footer__dot {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* ── 브랜드 바 ── */
+.footer__brand-bar {
+  background-color: #0a0a0a;
+  border-top: 0.1rem solid #222;
+  padding: 2rem 0;
+}
+
+.footer__brand-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.footer__brand-link {
+  text-align: center;
+  font-size: 2rem;
+  font-family: 'Cormorant Garamond', 'Garamond', serif;
+  font-weight: 400;
+}
+.footer__brand-link:last-child { border-right: none; }
+
+
+

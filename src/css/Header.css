@@ -1,0 +1,684 @@
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2200;
+    transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header .header_i {
+    width: 100%;
+    background-color: transparent;
+    position: relative;
+}
+
+header .header_i::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: rgba(17,17,17,0.85);
+    backdrop-filter: blur(1.6rem);
+    opacity: 0;
+    transition: opacity .1s cubic-bezier(0.25, 0.46, 0.45, 0.94) .4s,
+                transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+}
+
+header.is-open .header_i::before {
+    opacity: 1;
+    transition: opacity .1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s,
+                transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header.is-sticky {
+    transform: translateY(-8rem);
+}
+
+header.is-sticky .header_i::before {
+    opacity: 1;
+    transition: opacity .1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s,
+                transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header .header_i .top,
+header .header_i .bottom {
+    position: relative;
+}
+
+/* top */
+header .header_i .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 8rem;
+    padding: 2.4rem 6rem;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.2);
+}
+
+header .header_i .top .logo h1 a span {
+    display: block;
+    width: 24.3rem;
+    height: 3.2rem;
+    background-image: url(/lotte/logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+header .header_i .top .utility .u_menu {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header .header_i .top .utility .u_menu li {
+    margin-left: 2.4rem;
+}
+
+header .header_i .top .utility .u_menu li>a,
+header .header_i .top .utility .u_menu li>button {
+    font-size: 1.4rem;
+    line-height: 2.6rem;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    white-space: nowrap;
+}
+
+header .header_i .top .utility .u_menu li .btn {
+    position: relative;
+    padding-right: 1.8rem;
+}
+
+header .header_i .top .utility .u_menu li .btn::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 1.6rem;
+    height: 1.6rem;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke-width='.1em' viewBox='0 0 16 16'%3E%3Cpath stroke='%23fff' stroke-linecap='square' d='m10.914 6.5-3 3-3-3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/* bottom */
+header .header_i .bottom {
+    width: 100%;
+    height: 6.6rem;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.2);
+}
+
+header .header_i .bottom .gnb {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 6.6rem;
+}
+
+header .header_i .bottom .gnb > ul {
+    display: flex;
+    height: 6.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header .header_i .bottom .gnb > ul > li {
+    display: flex;
+    align-items: center;
+}
+
+header .header_i .bottom .gnb > ul > li > a {
+    display: block;
+    padding: 0 3rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #fff;
+    height: 100%;
+    line-height: 6.6rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+header .header_i .bottom .gnb > ul > li > a:hover {
+    opacity: 0.8;
+}
+
+/* 드롭다운 */
+header .header_i .bottom .gnb .dropdown {
+    position: absolute;
+    top: 6.6rem;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(17,17,17,0.85);
+    backdrop-filter: blur(1.6rem);
+    pointer-events: none;
+    visibility: hidden;
+    overflow: hidden;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path .4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                visibility .4s,
+                height .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header .header_i .bottom .gnb .dropdown.active {
+    clip-path: inset(0 0 0% 0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+header .header_i .bottom .gnb .dropdown .dropdown_inner {
+    width: 100%;
+    max-width: 140rem;
+    margin: 0 auto;
+    padding-left: 23.8rem;
+    padding-top: 2.8rem;
+    padding-bottom: 4.8rem;
+    min-height: 29.6rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+}
+
+header .header_i .bottom .gnb .dropdown .dropdown_inner.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+header .header_i .bottom .gnb .dropdown .menu_name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22rem;
+    height: 100%;
+    padding-top: 4rem;
+    padding-right: 2.8rem;
+    border-right: 0.1rem solid rgba(255, 255, 255, 0.2);
+    font-size: 2.4rem;
+    line-height: 4rem;
+    font-weight: 400;
+    color: #999;
+}
+
+header .header_i .bottom .gnb .dropdown .dropdown_menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0 4rem;
+}
+
+header .header_i .bottom .gnb .dropdown .oper {
+    gap: 0 10rem;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_group {
+    padding: 1.2rem 0 1.2rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 18rem;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_title {
+    display: inline-flex;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 3.6rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+header .header_i .bottom .gnb .dropdown a.sub_title::after {
+    content: "";
+    display: inline-block;
+    width: 1.6rem;
+    height: 1.6rem;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23ddd' stroke-linecap='square' stroke-width='.12em' d='m6.426 17.15 7.148-7.147-7.148-7.148'/%3E%3C/svg%3E");
+    margin-left: .8rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    flex-shrink: 0;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_title:hover {
+    text-decoration: underline;
+    text-underline-offset: .3rem;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_group ul {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    margin-top: .8rem;
+    list-style: none;
+    padding: 0;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_group ul li {
+    margin-top: .4rem;
+    width: 26.6rem;
+    padding: 0 2.4rem 0 0;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_group ul li:last-child {
+    padding-right: 0;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_group ul li a {
+    display: block;
+    padding: .4rem 0;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 2.6rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    background: none;
+    height: auto;
+    white-space: nowrap;
+    transition: color .2s;
+}
+
+header .header_i .bottom .gnb .dropdown .sub_group ul li a:hover {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.util_dropdown {
+    position: absolute;
+    top: calc(100% + 1.2rem);
+    right: 0;
+    background-color: #fff;
+    min-width: 18rem;
+    z-index: 9999;
+    padding: 1.6rem 2rem;
+    border-radius: 1rem;
+    opacity: 0;
+    transform: translateY(-0.8rem);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.util_dropdown.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.util_dropdown .util_dropdown_item {
+    display: block;
+    width: 100%;
+    padding: 0.9rem 0;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #111;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 0.1rem solid transparent;
+    transition: border-bottom-color 0.2s ease;
+}
+
+.util_dropdown .util_dropdown_item:hover {
+    border-bottom-color: #111;
+}
+
+/* ════════════════════
+   데스크탑 / 모바일 토글
+════════════════════ */
+.desktop-only { display: flex; }
+.mobile-only  { display: none; }
+
+/* ════════════════════
+   햄버거 버튼
+════════════════════ */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2300;
+    position: relative;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 0.15rem;
+    background-color: #fff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger.is-active span:nth-child(1) {
+    transform: translateY(0.65rem) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+    transform: translateY(-0.65rem) rotate(-45deg);
+}
+.bs-list{
+    display: none;
+}
+
+/* ════════════════════
+   모바일 패널
+════════════════════ */
+.mobile-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100dvh;
+    background: #fff;
+    z-index: 2100;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow-y: auto;
+}
+
+.mobile-panel.is-open {
+    transform: translateX(0);
+}
+
+.mp-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 2.4rem;
+    border-bottom: 0.1rem solid #eee;
+    flex-shrink: 0;
+}
+
+.mp-top-left {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.mp-lang-btn,
+.mp-curr-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: #333;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+}
+
+.mp-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+.mp-login {
+    padding: 2.4rem;
+    background: #f8f8f8;
+    flex-shrink: 0;
+}
+
+.mp-login-title {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.6rem;
+    text-decoration: none;
+}
+
+.mp-login p {
+    font-size: 1.3rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.mp-join {
+    font-size: 1.3rem;
+    color: #111;
+    text-decoration: underline;
+}
+
+.mp-divider {
+    height: 0.1rem;
+    background: #e5e5e5;
+    flex-shrink: 0;
+}
+
+.mp-shortcuts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.mp-shortcuts li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 2.4rem;
+    border-bottom: 0.1rem solid #eee;
+}
+
+.mp-shortcuts li a {
+    font-size: 1.5rem;
+    color: #111;
+    text-decoration: none;
+}
+
+.mp-shortcuts li span {
+    font-size: 1.6rem;
+    color: #999;
+}
+
+.mp-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.mp-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 12rem;
+    flex-shrink: 0;
+    border-right: 0.1rem solid #eee;
+    background: #fff;
+}
+
+.mp-nav li {
+    padding: 1.6rem 2rem;
+    font-size: 1.4rem;
+    color: #555;
+    cursor: pointer;
+    border-bottom: 0.1rem solid #f0f0f0;
+    transition: color 0.2s, background 0.2s;
+    word-break: keep-all;
+}
+
+.mp-nav li.active {
+    color: #111;
+    font-weight: 600;
+    background: #f8f8f8;
+}
+
+.mp-sub {
+    flex: 1;
+    padding: 1.6rem 2rem;
+    overflow-y: auto;
+}
+
+.mp-sub ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mp-sub ul li {
+    padding: 1rem 0;
+    border-bottom: 0.1rem solid #f0f0f0;
+}
+
+.mp-sub ul li a {
+    font-size: 1.4rem;
+    color: #444;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.mp-sub ul li a:hover {
+    color: #111;
+}
+
+.mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 2050;
+}
+
+/* ════════════════════
+   반응형 분기 760px
+════════════════════ */
+@media (max-width: 76rem) {
+    .desktop-only { display: none !important; }
+    .mobile-only  { display: flex !important; }
+
+    header .header_i .top {
+        padding: 2rem 2.4rem;
+        min-height: 6rem;
+        border-bottom: none;
+    }
+}
+
+/* ════════════════════
+   모바일 sticky 흰색 헤더
+════════════════════ */
+@media (max-width: 76rem) {
+    header.is-sticky {
+        transform: none;
+        background-color: #fff;
+        box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.08);
+    }
+
+    header.is-sticky .header_i::before {
+        opacity: 0;
+    }
+
+    /* 스크롤시 로고 검정으로 */
+    header.is-sticky .header_i .top .logo h1 a span {
+        filter: invert(1);
+    }
+
+    /* 스크롤시 햄버거 검정으로 */
+    header.is-sticky .hamburger span {
+        background-color: #111;
+    }
+
+    /* 스크롤시 햄버거 X도 검정 유지 */
+    header.is-sticky .hamburger.is-active span {
+        background-color: #111;
+    }
+
+    /* ════════════════════
+   바텀시트
+════════════════════ */
+.bs-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 3000;
+}
+
+.bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 1.6rem 1.6rem 0 0;
+    z-index: 3100;
+    padding: 1.2rem 0 4rem;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    max-height: 70dvh;
+    overflow-y: auto;
+}
+
+.bottom-sheet.is-open {
+    transform: translateY(0);
+}
+
+.bs-handle {
+    width: 4rem;
+    height: 0.4rem;
+    background: #ddd;
+    border-radius: 0.2rem;
+    margin: 0 auto 1.6rem;
+}
+
+.bs-list {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.bs-list li {
+    padding: 1.6rem 2.4rem;
+    font-size: 1.6rem;
+    color: #111;
+    cursor: pointer;
+    border-bottom: 0.1rem solid #f0f0f0;
+    transition: background 0.15s;
+}
+
+.bs-list li:hover {
+    background: #f8f8f8;
+}
+
+.bs-list li:last-child {
+    border-bottom: none;
+}
+}
+

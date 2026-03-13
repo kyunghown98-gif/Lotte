@@ -1,0 +1,9 @@
+.banner{
+    margin-top: 10rem;
+}
+.banner .banner_i{
+    max-width: 140rem;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+}
