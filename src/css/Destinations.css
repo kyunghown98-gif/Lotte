@@ -57,8 +57,17 @@
   transition: all 0.22s;
 }
 
-.chip:hover { border-color: #111; color: #111; }
-.chip.on { background: #111; border-color: #111; color: #fff; font-weight: 500; }
+.chip:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.chip.on {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+  font-weight: 500;
+}
 
 .destinations .box {
   margin-left: calc((100% - 140rem) / 2);
@@ -66,7 +75,9 @@
   margin-top: 3.2rem;
 }
 
-.dest_card_area { overflow: hidden; }
+.dest_card_area {
+  overflow: hidden;
+}
 
 .dest_swiper {
   max-width: 140rem;
@@ -74,7 +85,9 @@
   overflow: visible;
 }
 
-.dest_swiper .swiper-wrapper { overflow: visible; }
+.dest_swiper .swiper-wrapper {
+  overflow: visible;
+}
 
 .dest_swiper .swiper-slide {
   height: 100%;
@@ -105,7 +118,10 @@
   transition: width 0.4s ease;
 }
 
-.dest-nav { display: flex; gap: 0.8rem; }
+.dest-nav {
+  display: flex;
+  gap: 0.8rem;
+}
 
 .nav-btn {
   width: 4.4rem;
@@ -121,8 +137,16 @@
   color: #333;
 }
 
-.nav-btn:hover:not(:disabled) { background: #111; border-color: #111; color: #fff; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:hover:not(:disabled) {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
 
 .card {
   position: relative;
@@ -155,7 +179,10 @@
   transition: opacity 0.3s, transform 0.3s;
 }
 
-.card.active .d_label { opacity: 0; transform: translateY(-0.6rem); }
+.card.active .d_label {
+  opacity: 0;
+  transform: translateY(-0.6rem);
+}
 
 .d_infor {
   position: absolute;
@@ -168,7 +195,9 @@
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.card.active .d_infor { transform: translateY(0); }
+.card.active .d_infor {
+  transform: translateY(0);
+}
 
 .d_city {
   font-size: 2.4rem;
@@ -189,14 +218,17 @@
   transition: opacity 0.35s 0.12s, transform 0.35s 0.12s;
 }
 
-.card.active .d_hotel { opacity: 1; transform: translateY(0); }
+.card.active .d_hotel {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .d_hotel li a {
   display: inline-block;
   padding: 0.4rem 1.2rem;
   border-radius: 10rem;
-  border: 0.1rem solid rgba(255,255,255,0.4);
-  color: rgba(255,255,255,0.88);
+  border: 0.1rem solid rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.88);
   font-size: 1.1rem;
   text-decoration: none;
   white-space: nowrap;
@@ -204,14 +236,25 @@
 }
 
 .d_hotel li a:hover {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(255,255,255,0.75);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.75);
 }
 
-.dest-desktop { display: block; }
-.dest-mobile  { display: none; }
-.dest-drop-wrap { display: none; }
-.dest-tab-wrap  { display: block; }
+.dest-desktop {
+  display: block;
+}
+
+.dest-mobile {
+  display: none;
+}
+
+.dest-drop-wrap {
+  display: none;
+}
+
+.dest-tab-wrap {
+  display: block;
+}
 
 @media (max-width: 760px) {
   .destinations {
@@ -228,7 +271,16 @@
     margin-bottom: 1.6rem;
   }
 
-  .dest-tab-wrap { display: none; }
+  .tit .title h2 {
+    font-size: 2.4rem;
+    line-height: 4rem;
+  }
+  .tit .title span{
+    font-size: 1.4rem;
+  }
+  .dest-tab-wrap {
+    display: none;
+  }
 
   .dest-drop-wrap {
     display: block;
@@ -255,7 +307,9 @@
     display: inline-block;
   }
 
-  .dest-chevron.open { transform: rotate(180deg); }
+  .dest-chevron.open {
+    transform: rotate(180deg);
+  }
 
   .dest-city-dropdown {
     position: absolute;
@@ -263,7 +317,7 @@
     right: 0;
     background: #fff;
     border-radius: 1.2rem;
-    box-shadow: 0 0.4rem 2rem rgba(0,0,0,0.15);
+    box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.15);
     min-width: 16rem;
     z-index: 200;
     list-style: none;
@@ -282,14 +336,30 @@
     transition: background 0.15s;
   }
 
-  .dest-city-dropdown li:last-child { border-bottom: none; }
-  .dest-city-dropdown li:hover { background: #f8f8f8; }
-  .dest-city-dropdown li.active { font-weight: 700; }
+  .dest-city-dropdown li:last-child {
+    border-bottom: none;
+  }
 
-  .dest-check { font-size: 1.3rem; color: #111; }
+  .dest-city-dropdown li:hover {
+    background: #f8f8f8;
+  }
 
-  .dest-desktop { display: none; }
-  .dest-mobile { display: block; }
+  .dest-city-dropdown li.active {
+    font-weight: 700;
+  }
+
+  .dest-check {
+    font-size: 1.3rem;
+    color: #111;
+  }
+
+  .dest-desktop {
+    display: none;
+  }
+
+  .dest-mobile {
+    display: block;
+  }
 
   .mobile-card {
     width: 100%;
@@ -301,7 +371,7 @@
 
   .mobile-card .d_infor {
     transform: translateY(0) !important;
-    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
   }
 
   .d_hotel--always {
@@ -309,5 +379,7 @@
     transform: translateY(0) !important;
   }
 
-  .dest-bottom { display: none; }
+  .dest-bottom {
+    display: none;
+  }
 }
