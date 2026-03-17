@@ -37,8 +37,14 @@ const Notice = () => {
   const [isPlaying, setIsPlaying] = useState(true)
   const total = notices.length
 
-  const handlePrev = () => swiperRef.current?.slidePrev()
-  const handleNext = () => swiperRef.current?.slideNext()
+  const handlePrev = () => {
+    swiperRef.current?.slidePrev()
+    setCurrent(prev => prev === 1 ? total : prev - 1)
+  }
+  const handleNext = () => {
+    swiperRef.current?.slideNext()
+    setCurrent(prev => prev === total ? 1 : prev + 1)
+  }
 
   const toggleAutoplay = () => {
     const swiper = swiperRef.current
@@ -51,11 +57,14 @@ const Notice = () => {
     setIsPlaying(!isPlaying)
   }
 
+  const item = notices[current - 1]
+
   return (
     <div className="notice">
       <div className="notice_i">
-        {/* Swiper + 컨트롤 flex 래퍼 */}
-        <div className="notice_inner">
+
+        {/* ── 데스크탑 ── */}
+        <div className="notice_inner notice_inner--desktop">
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             modules={[Navigation, Pagination, A11y, Autoplay]}
@@ -66,32 +75,48 @@ const Notice = () => {
             style={{ height: '72px' }}
             onRealIndexChange={(swiper) => setCurrent(swiper.realIndex + 1)}
           >
-            {notices.map((item) => (
-              <SwiperSlide key={item.id}>
+            {notices.map((n) => (
+              <SwiperSlide key={n.id}>
                 <div className="left">
-                  <p className="text1">{item.filter}</p>
-                  <p className="text2">{item.category}</p>
+                  <p className="text1">{n.filter}</p>
+                  <p className="text2">{n.category}</p>
                 </div>
-                <a href="#">{item.tit}</a>
-                <p className="date">{item.date}</p>
+                <a href="#">{n.tit}</a>
+                <p className="date">{n.date}</p>
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* 커스텀 컨트롤 */}
           <div className="notice_controls">
             <span className="notice_counter">{current}/{total}</span>
-            <button className="notice_btn" onClick={handlePrev} aria-label="이전">
-              〈
-            </button>
+            <button className="notice_btn" onClick={handlePrev} aria-label="이전">〈</button>
             <button className="notice_btn play_btn" onClick={toggleAutoplay} aria-label="재생/정지">
-              {isPlaying ? '⏸' : '▶'}
+              {isPlaying ? 'II' : '▶'}
             </button>
-            <button className="notice_btn" onClick={handleNext} aria-label="다음">
-              〉
-            </button>
+            <button className="notice_btn" onClick={handleNext} aria-label="다음">〉</button>
           </div>
         </div>
+
+        {/* ── 모바일: Swiper 없이 state로 직접 표시 ── */}
+        <div className="notice_inner notice_inner--mobile">
+          <div className="notice_m_top">
+            <span className="notice_m_filter">{item.filter}</span>
+            <span className="notice_m_sep">|</span>
+            <span className="notice_m_category">{item.category}</span>
+          </div>
+          <a href="#" className="notice_m_tit">{item.tit}</a>
+          <div className="notice_m_bottom">
+            <span className="notice_m_date">{item.date}</span>
+            <div className="notice_controls">
+              <span className="notice_counter">{current}/{total}</span>
+              <button className="notice_btn" onClick={handlePrev} aria-label="이전">〈</button>
+              <button className="notice_btn play_btn" onClick={toggleAutoplay} aria-label="재생/정지">
+                {isPlaying ? 'II' : '▶'}
+              </button>
+              <button className="notice_btn" onClick={handleNext} aria-label="다음">〉</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   )

@@ -1,3 +1,7 @@
+/* ================================================================
+   footer.css  —  기존 스타일 전체 + 모바일(760px) 반응형 추가
+   ================================================================ */
+
 .footer {
   background-color: #111;
   color: #ccc;
@@ -62,13 +66,11 @@
   padding-right: 6rem;
 }
 
-.footer__col {
-  min-width: 0;
-}
+.footer__col { min-width: 0; }
 
 .footer__col-title {
   font-size: 2.4rem;
-    line-height: 4rem;
+  line-height: 4rem;
   font-weight: 400;
   text-transform: uppercase;
   color: #fff;
@@ -87,12 +89,11 @@
 
 .footer__col-list a {
   font-size: 1.6rem;
-    line-height: 2.8rem;
-    font-weight: 400;
-    margin-top: 1.2rem;
-    color: #fff;
+  line-height: 2.8rem;
+  font-weight: 400;
+  margin-top: 1.2rem;
+  color: #fff;
   white-space: nowrap;
-
 }
 
 /* 세로 구분선 */
@@ -127,7 +128,7 @@
 .footer__family {
   margin-top: 2.5rem;
   border-bottom: 0.1rem solid #444;
-  position: relative;  /* ← 기준점 */
+  position: relative;
 }
 
 .footer__family-btn {
@@ -145,8 +146,8 @@
 .footer__family-btn em {
   font-style: italic;
   font-size: 1.6rem;
-    line-height: 2.8rem;
-    font-weight: 400;
+  line-height: 2.8rem;
+  font-weight: 400;
   font-family: 'Cormorant Garamond', 'Garamond', serif;
   color: #ccc;
 }
@@ -160,7 +161,7 @@
 
 .footer__family-dropdown {
   position: absolute;
-  bottom: 100%;        /* 버튼 위쪽에 붙음 */
+  bottom: 100%;
   left: 0;
   right: 0;
   background-color: #333;
@@ -170,20 +171,13 @@
   max-height: 0;
   transition: max-height 0.4s ease;
   border-radius: 1rem;
-  
 }
-.footer__family-dropdown::-webkit-scrollbar {
-  width: 0.3rem;
-}
-/* 스크롤바 막대기 */
+.footer__family-dropdown::-webkit-scrollbar { width: 0.3rem; }
 .footer__family-dropdown::-webkit-scrollbar-thumb {
   background-color: #999;
   border-radius: 0.2rem;
 }
-/* 화살표 제거 */
-.footer__family-dropdown::-webkit-scrollbar-button {
-  display: none;
-}
+.footer__family-dropdown::-webkit-scrollbar-button { display: none; }
 .footer__family-dropdown.open {
   max-height: 27.7rem;
   overflow: auto;
@@ -214,16 +208,13 @@
   color: #999;
 }
 
-
 .footer__sns-blog {
   font-size: 1rem;
   font-weight: 700;
   color: #999;
 }
 
-/* ── 하단: ── */
-
-
+/* ── 하단 약관 ── */
 .footer__policy {
   display: flex;
   flex-wrap: wrap;
@@ -233,11 +224,10 @@
 
 .footer__policy a {
   font-size: 1.6rem;
-    line-height: 2.8rem;
-    font-weight: 400;
+  line-height: 2.8rem;
+  font-weight: 400;
   color: #777;
 }
-
 
 .footer__policy--bold {
   font-weight: 700;
@@ -270,5 +260,197 @@
 }
 .footer__brand-link:last-child { border-right: none; }
 
+/* 모바일 전용 요소 — 기본(데스크탑)에서 숨김 */
+.footer__mobile { display: none; }
 
 
+/* ================================================================
+   760px 이하 — 모바일 레이아웃
+   ================================================================ */
+@media (max-width: 760px) {
+  html { font-size: 10px; }
+
+  /* 데스크탑 전용 블록 숨기기 */
+  .footer__top--desktop,
+  .footer__body--desktop,
+  .footer__bottom--desktop {
+    display: none !important;
+  }
+
+  /* 모바일 블록 표시 */
+  .footer__mobile { display: block; }
+
+  .footer__main {
+    padding: 0;
+  }
+
+  .footer__inner {
+    max-width: 100%;
+  }
+
+  /* ── 아코디언 ── */
+  .footer__accordion {
+    border-top: 0.1rem solid #2a2a2a;
+  }
+
+  .footer__acc-item {
+    border-bottom: 0.1rem solid #2a2a2a;
+  }
+
+  .footer__acc-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.6rem 2rem;        /* ← 지정값 */
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: left;
+  }
+
+  /* 열렸을 때 배경 살짝 밝게 */
+  .footer__acc-btn.open {
+    background-color: #1a1a1a;
+  }
+
+  .footer__acc-icon {
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  /* 패널 — max-height 트랜지션 */
+  .footer__acc-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    background-color: #1a1a1a;
+  }
+
+  .footer__acc-panel.open {
+    max-height: 40rem;
+  }
+
+  .footer__acc-list {
+    list-style: disc;
+    padding: 1.6rem 2rem 1.6rem 3.6rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .footer__acc-list li {
+    padding: 0.8rem 0;
+  }
+
+  .footer__acc-list a {
+    font-size: 1.4rem;
+    color: #ccc;
+    line-height: 1.6;
+    text-decoration: none;
+  }
+
+  /* ── 모바일 정보 섹션 ── */
+  .footer__mobile-info {
+    padding: 2.4rem 2rem;        /* ← 지정값 */
+    border-bottom: 0.1rem solid #2a2a2a;
+  }
+
+  .footer__mobile-info .footer__logo {
+    font-size: 3.2rem;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .footer__mobile-info .footer__address {
+    margin-top: 0;
+    gap: 0.4rem;
+  }
+
+  .footer__mobile-info .footer__address p {
+    font-size: 1.3rem;
+    color: #888;
+  }
+
+  /* 개인정보 처리방침 / 신문고 링크 */
+  .footer__mobile-links {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border-top: 0.1rem solid #2a2a2a;
+    padding-top: 2rem;
+  }
+
+  .footer__mobile-links a {
+    font-size: 1.4rem;
+    color: #ccc;
+    text-decoration: none;
+    line-height: 1.6;
+  }
+
+  .footer__mobile-links .footer__policy--bold {
+    font-weight: 700;
+    color: #fff !important;
+  }
+
+  /* ── 모바일 앱 버튼 ── */
+  .footer__mobile-apps {
+    display: flex;
+    border-bottom: 0.1rem solid #2a2a2a;
+  }
+
+  .footer__mobile-app-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.8rem 0;
+    color: #ccc;
+    font-size: 1.4rem;
+    text-decoration: none;
+    border-right: 0.1rem solid #2a2a2a;
+  }
+
+  .footer__mobile-app-btn:last-child {
+    border-right: none;
+  }
+
+  /* ── 모바일 SNS ── */
+  .footer__mobile-sns {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2.4rem 2rem;
+    border-bottom: 0.1rem solid #2a2a2a;
+  }
+
+  .footer__mobile-sns .footer__sns-link {
+    width: 4rem;
+    height: 4rem;
+    border-color: #333;
+  }
+
+  /* ── 브랜드 바 (모바일) ── */
+  .footer__brand-inner {
+    flex-wrap: wrap;
+    gap: 1.2rem 0;
+    padding: 1.6rem 2rem;
+    justify-content: flex-start;
+  }
+
+  .footer__brand-link {
+    font-size: 1.4rem;
+    flex: 0 0 50%;
+    text-align: left;
+    padding: 0.4rem 0;
+  }
+}

@@ -8,13 +8,16 @@
   margin: 0 auto;
 }
 
-/* swiper + 컨트롤을 가로로 나란히 */
-.notice .notice_inner {
+/* ── 데스크탑 ── */
+.notice_inner--desktop {
   display: flex;
   align-items: center;
 }
-.notice .notice_inner .swiper {
+.notice_inner--desktop .swiper {
   flex: 1;
+}
+.notice_inner--mobile {
+  display: none;
 }
 
 .notice .notice_i .swiper-slide {
@@ -45,7 +48,6 @@
   white-space: nowrap;
 }
 
-/* 커스텀 컨트롤 영역 */
 .notice_controls {
   display: flex;
   align-items: center;
@@ -68,6 +70,75 @@
   padding: 0.2rem 0.6rem;
   line-height: 1;
 }
-.notice_btn:hover {
-  color: #000;
+.notice_btn:hover { color: #000; }
+
+
+/* ================================================================
+   760px 이하 — 모바일
+   ================================================================ */
+@media (max-width: 760px) {
+  html { font-size: 10px; }
+
+
+  .notice .notice_i {
+    padding: 2rem;
+  }
+
+  /* 데스크탑 숨기고 모바일 표시 */
+  .notice_inner--desktop { display: none; }
+  .notice_inner--mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  /* 상단: 통합 | 일반공지 */
+  .notice_m_top {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .notice_m_filter,
+  .notice_m_category {
+    font-size: 1.3rem;
+    color: #555;
+  }
+  .notice_m_sep {
+    font-size: 1.2rem;
+    color: #bbb;
+  }
+
+  /* 제목 */
+  .notice_m_tit {
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    font-weight: 500;
+    color: #111;
+    text-decoration: none;
+  }
+
+  /* 하단: 날짜 왼쪽 / 컨트롤 오른쪽 */
+  .notice_m_bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .notice_m_date {
+    font-size: 1.3rem;
+    color: #888;
+  }
+
+  /* 모바일 컨트롤 margin 리셋 */
+  .notice_inner--mobile .notice_controls {
+    margin-left: 0;
+    gap: 0.2rem;
+  }
+  .notice_inner--mobile .notice_counter {
+    font-size: 1.3rem;
+    margin-right: 0.4rem;
+  }
+  .notice_inner--mobile .notice_btn {
+    font-size: 1.3rem;
+    padding: 0.2rem 0.4rem;
+  }
 }
