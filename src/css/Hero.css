@@ -258,3 +258,44 @@
     clip: rect(0,0,0,0);
     white-space: nowrap;
 }
+@media screen and (max-width: 760px) {
+
+  /* ── Hero 전체 높이 ── */
+  .swiper-main-kv .swiper-container {
+    height: 67.25vh;
+    min-height: unset;
+  }
+
+  /* ── card-info 위치 ── */
+  .swiper-main-kv .card-info {
+    left: 2rem;
+    width: calc(100% - 4rem);
+    bottom: 10.4rem;
+  }
+
+  .swiper-main-kv .card-info .card-info-tit .info-tit{
+    font-size: 2.4rem;
+        line-height: 3.6rem
+  }
+
+  /* ── sub 텍스트 숨김 ── */
+  .swiper-main-kv .card-info-sub {
+    display: none;
+  }
+
+  /* ── 컨트롤 영역: 우측 하단 고정 ── */
+  .swiper-main-kv .swiper-controls {
+    position: absolute;
+    bottom: 2.4rem;
+    left: auto;
+    right: 2rem;
+    gap: 1.2rem;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* ── pagination bar ── */
+  .swiper-main-kv .swiper-pagination {
+    width: 6rem;
+  }
+}
