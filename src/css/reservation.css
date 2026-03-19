@@ -1,0 +1,997 @@
+/* =====================
+   RESERVATION - 고정 위치
+   ===================== */
+.reservation {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 300;
+    pointer-events: none;
+}
+.reservation_m { display: none; }
+
+/* =====================
+   축소 버튼
+   ===================== */
+.re_collapsed_btn {
+    position: absolute;
+    bottom: 4rem;
+    right: 4rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background-color: rgba(129, 108, 91, 0.88);
+    backdrop-filter: blur(8px);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.6);
+    transition: opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1), background-color .2s;
+    z-index: 10;
+}
+.re_collapsed_btn span {
+    font-size: 1.2rem;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -.01em;
+}
+.re_collapsed_btn:hover { background-color: rgba(110, 90, 74, 0.95); }
+.reservation.collapsed .re_collapsed_btn { opacity: 1; pointer-events: all; transform: scale(1); }
+.reservation.collapsed .reservation_i    { opacity: 0; pointer-events: none; transform: translateX(110%); }
+.reservation.collapsed .panel_wrapper    { opacity: 0 !important; pointer-events: none !important; transform: translateX(100%) !important; }
+
+/* =====================
+   RESERVATION PANEL
+   ===================== */
+.reservation_i {
+    width: 44.8rem;
+    backdrop-filter: blur(8px);
+    background-color: #111;
+    height: calc(100vh - 13rem);
+    max-height: 72rem;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity .35s ease, transform .4s cubic-bezier(.4,0,.2,1);
+    pointer-events: auto;
+}
+.reservation .reservation_i .modal_header {
+    width: 100%;
+    height: auto;
+    min-width: 7.8rem;
+}
+.reservation .reservation_i .modal_header .m_notice {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.reservation .reservation_i .modal_header .m_notice > a {
+    display: flex;
+    width: 100%;
+    height: 6rem;
+    padding: 0rem 2.4rem;
+    color: #fff;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+}
+.reservation .reservation_i .modal_header .m_notice > a .text {
+    margin-left: 1.6rem;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    flex: 0 1 auto;
+    text-overflow: ellipsis;
+}
+.reservation .reservation_i .modal_header .m_notice > a .text::after {
+    content: "";
+    width: 1.6rem;
+    height: 1.6rem;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    margin-left: .8rem;
+    background-image: url(./lotte/right.svg);
+}
+.reservation .reservation_i .modal_header .m_switch {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    padding: 2.4rem 4rem;
+}
+.reservation .reservation_i .modal_header .m_switch .btn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 5.2rem;
+    background-color: #444;
+    border-radius: .4rem;
+    position: relative;
+}
+.reservation .reservation_i .modal_header .m_switch .btn::before {
+    content: "";
+    position: absolute;
+    width: calc(50% - .8rem);
+    height: calc(100% - .8rem);
+    background-color: #fff;
+    border-radius: .4rem;
+    transition: left .3s ease;
+    margin: .4rem;
+    left: 0;
+}
+.reservation .reservation_i .modal_header .m_switch .btn.dining::before { left: 50%; }
+.reservation .reservation_i .modal_header .m_switch .btn button {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    border: none;
+    min-width: 10.4rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+.reservation .reservation_i .modal_header .m_switch .btn button span {
+    font-size: 1.8rem;
+    line-height: 3rem;
+    color: #aaa;
+    transition: color .3s ease;
+}
+.reservation .reservation_i .modal_header .m_switch .btn button.active span {
+    color: #111;
+    font-weight: 600;
+}
+.reservation .reservation_i .modal_content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.reservation .reservation_i .modal_content .re_hotel,
+.reservation .reservation_i .modal_content .re_date,
+.reservation .reservation_i .modal_content .re_number {
+    padding: 2.4rem 4rem;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    cursor: pointer;
+    transition: background-color .2s;
+}
+.reservation .reservation_i .modal_content .re_hotel:hover,
+.reservation .reservation_i .modal_content .re_date:hover,
+.reservation .reservation_i .modal_content .re_number:hover {
+    background-color: rgba(255,255,255,.04);
+}
+.reservation .reservation_i .modal_content .re_hotel .title p,
+.reservation .reservation_i .modal_content .re_date .title p {
+    color: #999;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    margin-bottom: .4rem;
+}
+.reservation .reservation_i .modal_content .re_hotel .re_value p.placeholder {
+    color: #fff;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-weight: 500;
+}
+.reservation .reservation_i .modal_content .re_hotel .re_value p.selected {
+    color: #fff;
+    font-size: 2rem;
+    line-height: 3rem;
+    font-weight: 500;
+}
+.reservation .reservation_i .modal_content .re_date .re_value .date_value {
+    color: #fff;
+    font-size: 2rem;
+    line-height: 3rem;
+    font-weight: 500;
+}
+.reservation .reservation_i .modal_content .re_number { padding: 2.4rem 4rem; }
+.reservation .reservation_i .modal_content .re_number .room_summary { display: flex; gap: 3.2rem; }
+.reservation .reservation_i .modal_content .re_number .room_summary .room_summary_item {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+.reservation .reservation_i .modal_content .re_number .room_summary .summary_label {
+    color: #999;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+}
+.reservation .reservation_i .modal_content .re_number .room_summary .summary_val {
+    color: #fff;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-weight: 500;
+}
+.reservation .reservation_i .modal_content .promotion_code {
+    display: flex;
+    padding: 2.4rem 4rem 0rem;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    border-bottom: none !important;
+    cursor: default !important;
+}
+.reservation .reservation_i .modal_content .promotion_code:hover { background-color: transparent !important; }
+.reservation .reservation_i .modal_content .promotion_code .code {
+    display: flex;
+    align-items: center;
+    color: #999;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    cursor: pointer;
+}
+.reservation .reservation_i .modal_content .promotion_code .code p {
+    color: #999;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+}
+.reservation .reservation_i .modal_footer { padding: 2.4rem 4rem 3.2rem; }
+.reservation .reservation_i .modal_footer .search button {
+    background-color: #816c5b;
+    border: 1px solid #816c5b;
+    transition: all .3s ease-in-out;
+    border-radius: .4rem;
+    height: 5.6rem;
+    min-width: 16rem;
+    padding: 0rem 4rem;
+    width: 100%;
+    cursor: pointer;
+}
+.reservation .reservation_i .modal_footer .search button:hover { background-color: #6e5a4a; }
+.reservation .reservation_i .modal_footer .search button span {
+    font-size: 1.8rem;
+    line-height: 3rem;
+    color: #fff;
+}
+
+/* =====================
+   PANEL WRAPPER
+   ===================== */
+.panel_overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: transparent;
+    pointer-events: auto;
+}
+.panel_wrapper {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    height: 100%;
+    z-index: 500;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .35s ease;
+}
+.panel_wrapper.open {
+    transform: translateX(0%);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* =====================
+   공통 패널 히어로 헤더
+   데스크탑: panel_hero_header 숨김, panel_desktop_header 표시
+   모바일:   panel_hero_header 표시, panel_desktop_header 숨김
+   ===================== */
+.panel_hero_header { display: none; }
+.panel_desktop_header { display: flex; }
+
+/* =====================
+   SIDE PANEL COMMON
+   ===================== */
+.side_panel {
+    background: #fff;
+    height: calc(100vh - 13rem);
+    max-height: 72rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.sp_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 3.2rem;
+    height: 7.2rem;
+    border-bottom: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+.sp_title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #111;
+    line-height: 3rem;
+}
+.sp_title_sub {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #888;
+    margin-left: .8rem;
+}
+.sp_close {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111;
+}
+
+/* =====================
+   HOTEL PANEL
+   ===================== */
+.hotel_panel { width: 94rem; position: relative; }
+.sp_search_wrap {
+    padding: 2.4rem 3.2rem;
+    border-bottom: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+.sp_search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: .4rem;
+    padding: 0 1.6rem;
+    height: 5.2rem;
+    gap: 1.2rem;
+}
+.sp_search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    color: #333;
+    background: transparent;
+}
+.sp_search input::placeholder { color: #bbb; }
+.sp_filter_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 3.2rem;
+    border-bottom: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+.sp_filter_tabs { display: flex; align-items: center; gap: .4rem; }
+.filter_tab {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #888;
+    cursor: pointer;
+    padding: .4rem .8rem;
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+}
+.filter_tab.active { color: #111; font-weight: 600; }
+.filter_divider { color: #ddd; font-size: 1.4rem; }
+.check_icon { color: #816c5b; }
+.sp_max_info { font-size: 1.4rem; color: #888; }
+.sp_body { display: flex; flex: 1; overflow: hidden; }
+.country_list {
+    width: 18rem;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+    flex-shrink: 0;
+    scrollbar-width: none;
+}
+.country_list::-webkit-scrollbar { display: none; }
+.country_item {
+    display: block;
+    width: 100%;
+    padding: 1.6rem 2.4rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.6rem;
+    color: #555;
+    cursor: pointer;
+    transition: background .15s;
+}
+.country_item:hover { background: #f5f5f5; }
+.country_item.active { background: #f0ede9; color: #111; font-weight: 600; }
+.hotel_list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2.4rem 3.2rem;
+    scrollbar-width: none;
+}
+.hotel_list::-webkit-scrollbar { display: none; }
+.hotel_list.has_scroll { scrollbar-width: thin; scrollbar-color: #ccc transparent; }
+.hotel_list.has_scroll::-webkit-scrollbar { display: block; width: 3px; }
+.hotel_list.has_scroll::-webkit-scrollbar-track { background: transparent; }
+.hotel_list.has_scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+.brand_group { margin-bottom: 3.2rem; }
+.brand_name { font-size: 1.8rem; font-weight: 600; color: #111; margin-bottom: 1.2rem; }
+.hotel_tags { display: flex; flex-wrap: wrap; gap: .8rem; }
+.hotel_tag {
+    padding: .8rem 1.6rem;
+    border: 1px solid #ddd;
+    border-radius: 10rem;
+    background: #fff;
+    font-size: 1.4rem;
+    color: #333;
+    cursor: pointer;
+    transition: all .2s;
+}
+.hotel_tag:hover { border-color: #816c5b; color: #816c5b; }
+.hotel_tag.active { background: #816c5b; border-color: #816c5b; color: #fff; }
+.hotel_tag.tag_disabled { opacity: .4; cursor: not-allowed; }
+
+/* HOTEL FOOTER */
+.hotel_footer {
+    flex-shrink: 0;
+    background: #fff;
+    border-top: 1px solid #eee;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s cubic-bezier(.4,0,.2,1);
+}
+.hotel_footer.visible { max-height: 18rem; }
+.selected_tags_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 3.2rem 0;
+    gap: 1.2rem;
+}
+.selected_tags { display: flex; flex-wrap: wrap; gap: .8rem; flex: 1; }
+.selected_tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .6rem 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 10rem;
+    font-size: 1.4rem;
+    color: #333;
+    background: #fff;
+}
+.selected_tag_remove {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+.selected_tag_remove:hover { color: #111; }
+.clear_all_btn {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: #888;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.clear_all_btn:hover { color: #111; }
+
+/* DATE PANEL */
+.date_panel { width: 96rem; }
+.cal_selected_bar {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 2rem 3.2rem;
+    border-bottom: 2px solid #111;
+    flex-shrink: 0;
+}
+.cal_sel_item { font-size: 1.8rem; color: #bbb; }
+.cal_sel_item.active {
+    color: #111;
+    font-weight: 600;
+    border-bottom: 2px solid #111;
+    padding-bottom: .2rem;
+    margin-bottom: -.2rem;
+}
+.cal_sel_sep { color: #bbb; font-size: 1.8rem; }
+.cal_nights { font-size: 1.8rem; color: #816c5b; font-weight: 600; }
+.cal_wrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: 3.2rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+}
+.cal_wrap::-webkit-scrollbar { width: 3px; }
+.cal_wrap::-webkit-scrollbar-track { background: transparent; }
+.cal_wrap::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+.cal_months { display: flex; gap: 4rem; }
+.cal_month { flex: 1; }
+.cal_month_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.4rem;
+}
+.cal_month_label { font-size: 1.8rem; font-weight: 600; color: #111; }
+.cal_nav_btn {
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+}
+.cal_table { width: 100%; border-collapse: collapse; }
+.cal_table thead th {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    padding-bottom: 1.2rem;
+    font-weight: 400;
+}
+.cal_table thead th.sun { color: #e74c3c; }
+.cal_table thead th.sat { color: #3498db; }
+.cal_table tbody td { text-align: center; padding: .2rem 0; }
+.cal_day {
+    width: 3.8rem;
+    height: 3.8rem;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    color: #222;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all .15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.cal_day:hover:not(:disabled) { background: #f0ede9; }
+.cal_day.checkin, .cal_day.checkout { background: #222 !important; color: #fff !important; font-weight: 700; }
+.cal_day.between { background: #f0ede9; border-radius: 0; }
+.cal_day.past { color: #ccc; cursor: default; }
+.cal_day:disabled { opacity: .4; }
+
+/* ROOM PANEL */
+.room_panel { width: 96rem; }
+.room_list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 3.2rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+}
+.room_list::-webkit-scrollbar { width: 3px; }
+.room_list::-webkit-scrollbar-track { background: transparent; }
+.room_list::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+.room_item { border-bottom: 1px solid #eee; padding: 2.4rem 0; }
+.room_item_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.room_label { font-size: 1.8rem; font-weight: 600; color: #111; }
+.children_age_link { font-size: 1.4rem; color: #888; text-decoration: none; }
+.room_item_body { display: flex; align-items: center; }
+.counter_group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.6rem;
+}
+.counter_divider { width: 1px; height: 5rem; background: #eee; }
+.counter_label { font-size: 1.6rem; color: #444; min-width: 5rem; }
+.counter { display: flex; align-items: center; gap: 2.4rem; }
+.counter_btn {
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    transition: all .15s;
+}
+.counter_btn:hover:not(:disabled) { border-color: #111; color: #111; }
+.counter_btn:disabled { opacity: .3; cursor: default; }
+.counter_val { font-size: 2rem; font-weight: 500; color: #111; min-width: 2.4rem; text-align: center; }
+.add_room_btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 2.4rem 0;
+    font-size: 1.6rem;
+    color: #555;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.add_room_btn:hover { color: #111; }
+
+/* PANEL FOOTER */
+.sp_footer_btn_wrap {
+    padding: 2.4rem 3.2rem 3.2rem;
+    flex-shrink: 0;
+}
+.hotel_footer .sp_footer_btn_wrap { border-top: none; }
+.sp_confirm_btn {
+    width: 100%;
+    max-width: 30rem;
+    margin: 0 auto;
+    display: block;
+    height: 5.6rem;
+    background: #111;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 500;
+    border: none;
+    border-radius: .4rem;
+    cursor: pointer;
+    transition: background .2s;
+}
+.sp_confirm_btn:hover { background: #333; }
+.sp_confirm_btn:disabled { background: #bbb; cursor: default; }
+
+/* ==============================================
+   MOBILE (max-width: 760px)
+   ============================================== */
+@media (max-width: 760px) {
+  html { font-size: 10px; }
+
+  .reservation_i { display: none !important; }
+
+  .reservation {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 300;
+    bottom: unset;
+    right: unset;
+    pointer-events: auto;
+  }
+
+  /* 예약하기 원형 버튼 */
+  .re_collapsed_btn.mobile_btn_show {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+  }
+
+  body.re_open header,
+  body.re_open .header,
+  body.re_open #header { display: none !important; }
+  body.re_open { overflow: hidden; }
+
+  .reservation_m.mobile_closed { opacity: 0; pointer-events: none; transform: translateY(100%); }
+
+  .reservation_m {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .35s ease, transform .4s cubic-bezier(.4,0,.2,1);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 히어로 이미지 (메인 예약창) */
+  .m_hero_img {
+    width: 100%;
+    height: 13rem;
+    background: #1a1a1a;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .m_hero_img.m_hero_room   { background: #2a2420; }
+  .m_hero_img.m_hero_dining { background: #1e2620; }
+  .m_hero_img img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* X 버튼 */
+  .m_close_btn {
+    position: fixed;
+    top: 1.6rem;
+    right: 1.6rem;
+    width: 3.6rem;
+    height: 3.6rem;
+    background: rgba(0,0,0,.45);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    z-index: 20;
+  }
+
+  /* 탭 */
+  .m_tab_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 13rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6rem;
+    background: transparent;
+    flex-shrink: 0;
+    z-index: 5;
+  }
+  .m_tab_btn_wrap {
+    display: flex;
+    width: 100%;
+    max-width: 28rem;
+    height: 4.8rem;
+    background: rgba(255,255,255,.18);
+    backdrop-filter: blur(8px);
+    border-radius: 10rem;
+    position: relative;
+    border: 1px solid rgba(255,255,255,.3);
+  }
+  .m_tab_btn_wrap::before {
+    content: "";
+    position: absolute;
+    width: calc(50% - .4rem);
+    height: calc(100% - .6rem);
+    background: #fff;
+    border-radius: 10rem;
+    margin: .3rem;
+    left: 0;
+    transition: left .3s ease;
+  }
+  .m_tab_btn_wrap.dining::before { left: 50%; }
+  .m_tab_btn_wrap button {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.6rem;
+    color: rgba(255,255,255,.8);
+    cursor: pointer;
+    font-weight: 400;
+    transition: color .3s;
+  }
+  .m_tab_btn_wrap button.active { color: #111; font-weight: 600; }
+
+  /* 스크롤 콘텐츠 */
+  .m_modal_content {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .m_modal_content::-webkit-scrollbar { display: none; }
+
+  /* 섹션 */
+  .m_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4.5rem 2rem 2rem;
+    min-height: 10rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    position: relative;
+    transition: background .15s;
+  }
+  .m_section:hover { background: #fafafa; }
+  .m_section_left { display: flex; flex-direction: column; gap: .6rem; }
+  .m_section_label { font-size: 1.4rem; color: #888; line-height: 1; }
+  .m_section_value { font-size: 1.8rem; color: #111; font-weight: 500; line-height: 1.4; }
+  .m_section_placeholder { font-size: 1.8rem; color: #111; font-weight: 500; line-height: 1.4; }
+  .m_section_arrow { position: absolute; right: 1.6rem; top: 50%; transform: translateY(-50%); flex-shrink: 0; }
+
+  /* 프로모션 코드 — 중앙 */
+  .m_promotion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    padding: 2.4rem 2rem;
+    cursor: pointer;
+    border-bottom: none;
+  }
+  .m_promotion span { font-size: 1.4rem; color: #888; }
+
+  /* 배너 */
+  .m_banner_area {
+    flex-shrink: 0;
+    margin: 0 2rem 4rem;
+    border-radius: .8rem;
+    overflow: hidden;
+    height: 16rem;
+    background: #d0cdc8;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 2rem 2rem;
+    position: relative;
+  }
+  .m_banner_area img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .m_banner_area p {
+    position: relative;
+    z-index: 1;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,.3);
+  }
+
+  /* 검색 버튼 */
+  .m_footer { flex-shrink: 0; padding: 0; }
+  .m_search_btn {
+    width: 100%;
+    height: 6rem;
+    background: #111;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .m_search_btn:hover { background: #333; }
+
+  /* =====================
+     모바일 사이드 패널 공통
+     ===================== */
+  .panel_wrapper {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    right: unset;
+    top: unset;
+    transform: translateY(100%);
+    transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .35s ease;
+    z-index: 600;
+  }
+  .panel_wrapper.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+  .side_panel { width: 100% !important; height: 100%; max-height: 100%; border-radius: 0; }
+
+  /* ★ 공통 패널 히어로 헤더 — 모바일에서 표시 */
+  .panel_hero_header {
+    display: block;
+    width: 100%;
+    height: 11rem;
+    background: #1a1a1a;   /* 이미지 없을 때 폴백 */
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  /* 배경 이미지 넣는 방법:
+     JSX에서 <PanelHeroHeader heroImg="경로" /> 로 전달 후
+     <div className="panel_hero_header" style={{ backgroundImage: `url(${heroImg})` }}>
+     또는 <img> 태그를 panel_hero_header 안에 추가:
+     .panel_hero_header img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  */
+  .panel_hero_header img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .panel_hero_content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1.6rem 2rem;
+  }
+  .panel_hero_title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+  }
+  .panel_hero_close {
+    width: 3.6rem;
+    height: 3.6rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 데스크탑 헤더 모바일에서 숨김 */
+  .panel_desktop_header { display: none !important; }
+
+  /* 호텔 패널 */
+  .hotel_panel .sp_header { position: relative; padding: 1.6rem 2rem; height: auto; }
+  .hotel_panel .sp_header::after {
+    content: "최대 3개";
+    font-size: 1.4rem;
+    color: #888;
+    position: absolute;
+    right: 5.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .sp_filter_row { padding: 1.2rem 2rem; }
+  .sp_body { flex-direction: column; }
+  .country_list {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-shrink: 0;
+    padding: .8rem 2rem;
+    gap: .4rem;
+    scrollbar-width: none;
+  }
+  .country_list::-webkit-scrollbar { display: none; }
+  .country_item {
+    white-space: nowrap;
+    padding: .8rem 1.6rem;
+    border-radius: .4rem;
+    font-size: 1.5rem;
+    width: auto;
+    flex-shrink: 0;
+  }
+  .country_item.active { background: #111; color: #fff; font-weight: 600; }
+  .hotel_list { padding: 2rem; }
+  .hotel_footer.visible { max-height: 22rem; }
+  .hotel_footer .sp_footer_btn_wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+  .hotel_footer .sp_footer_btn_wrap .sp_confirm_btn { max-width: 100%; border-radius: 0; height: 6rem; background: #111; font-size: 1.8rem; }
+  .selected_tags_row { padding: 1.2rem 2rem 0; }
+
+  /* 캘린더 패널 */
+  .cal_wrap { padding: 2rem; }
+  .cal_months { flex-direction: column; gap: 3.2rem; }
+  .cal_month_header { margin-bottom: 1.6rem; }
+  .cal_table thead th { font-size: 1.3rem; }
+  .cal_day { width: 4.2rem; height: 4.2rem; font-size: 1.5rem; }
+  .cal_selected_bar { padding: 1.6rem 2rem; border-bottom: 1px solid #eee; flex-wrap: wrap; gap: .8rem; }
+  .cal_sel_item { font-size: 1.6rem; }
+
+  /* 객실 패널 */
+  .room_list { padding: 0 2rem; }
+  .counter_group { padding: 0 .8rem; }
+  .sp_footer_btn_wrap { padding: 2rem; }
+  .sp_confirm_btn { max-width: 100%; height: 6rem; border-radius: 0; font-size: 1.8rem; }
+}

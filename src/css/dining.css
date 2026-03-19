@@ -1,0 +1,296 @@
+/* =====================
+   DINING 메인 섹션 (데스크탑)
+   ===================== */
+.dining_section {
+    padding: 2.4rem 4rem;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    cursor: pointer;
+    transition: background-color .2s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dining_section:hover { background-color: rgba(255,255,255,.04); }
+
+.dining_section_inner { display: flex; flex-direction: column; flex: 1; }
+
+.dining_section .title p {
+    color: #999;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    margin-bottom: .4rem;
+}
+.dining_section .re_value p.placeholder {
+    color: #fff;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-weight: 500;
+}
+.dining_section .re_value p.selected {
+    color: #fff;
+    font-size: 2rem;
+    line-height: 3rem;
+    font-weight: 500;
+}
+.dining_section_arrow { display: none; }
+
+/* 프로모션 코드 (데스크탑) */
+.dining_promotion_code {
+    display: flex;
+    padding: 2.4rem 4rem 0rem;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+}
+.dining_promotion_code .code {
+    display: flex;
+    align-items: center;
+    color: #999;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    cursor: pointer;
+}
+.dining_promotion_code .code p { color: #999; font-size: 1.6rem; line-height: 2.8rem; }
+
+/* 인원수 섹션 */
+.dining_section_inner.dining_person_row { flex-direction: row; gap: 3.2rem; }
+.dining_person_item { display: flex; flex-direction: column; gap: .4rem; }
+.dining_person_item .summary_label { color: #999; font-size: 1.6rem; line-height: 2.8rem; }
+.dining_person_item .summary_val   { color: #fff; font-size: 2.4rem; line-height: 3.2rem; font-weight: 500; }
+
+.dining_person_mobile { display: none; }
+
+/* =====================
+   DINING SELECT PANEL
+   ===================== */
+.dining_panel { width: 94rem; }
+
+.dining_body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    border-top: 1px solid #eee;
+}
+
+.dining_hotel_list {
+    width: 22rem;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+    flex-shrink: 0;
+    padding-top: 1.6rem;
+    scrollbar-width: none;
+}
+.dining_hotel_list::-webkit-scrollbar { display: none; }
+.dining_list_label {
+    font-size: 1.4rem;
+    color: #888;
+    padding: 0 2.4rem 1.2rem;
+    font-weight: 500;
+}
+.dining_hotel_item {
+    display: block;
+    width: 100%;
+    padding: 1.4rem 2.4rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.5rem;
+    color: #555;
+    cursor: pointer;
+    transition: background .15s;
+    line-height: 1.4;
+}
+.dining_hotel_item:hover { background: #f5f5f5; }
+.dining_hotel_item.active { background: #111; color: #fff; font-weight: 600; }
+
+.dining_restaurant_list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.6rem 3.2rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+}
+.dining_restaurant_list::-webkit-scrollbar { width: 3px; }
+.dining_restaurant_list::-webkit-scrollbar-track { background: transparent; }
+.dining_restaurant_list::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+
+.dining_card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background .15s;
+    position: relative;
+}
+.dining_card:last-child { border-bottom: none; }
+.dining_card:hover { background: #fafafa; }
+.dining_card.active { background: #faf8f6; }
+.dining_card_img {
+    width: 13rem;
+    height: 9rem;
+    border-radius: .4rem;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.dining_card_img img { width: 100%; height: 100%; object-fit: cover; }
+.dining_card_info { flex: 1; }
+.dining_card_category { font-size: 1.4rem; color: #888; margin-bottom: .6rem; }
+.dining_card_title { font-size: 1.8rem; font-weight: 600; color: #111; }
+.dining_card_radio {
+    width: 2rem;
+    height: 2rem;
+    border: 1.5px solid #ccc;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all .2s;
+    position: relative;
+}
+.dining_card_radio.checked { border-color: #816c5b; background: #816c5b; }
+.dining_card_radio.checked::after {
+    content: "";
+    position: absolute;
+    width: .8rem;
+    height: .8rem;
+    background: #fff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* =====================
+   PERSON PANEL
+   ===================== */
+.person_panel { width: 96rem; }
+.person_desktop { display: block; }
+.person_mobile  { display: none; }
+
+.person_body {
+    flex: 1;
+    padding: 3.2rem;
+    border-top: 1px solid #eee;
+}
+.person_row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3.2rem;
+}
+.person_col {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+.person_divider { width: 1px; height: 5rem; background: #eee; flex-shrink: 0; }
+.person_label { font-size: 1.6rem; color: #333; }
+
+.counter { display: flex; align-items: center; gap: 2rem; }
+.counter_btn {
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    transition: all .15s;
+}
+.counter_btn:hover:not(:disabled) { border-color: #111; color: #111; }
+.counter_btn:disabled { opacity: .3; cursor: default; }
+.counter_val { font-size: 2rem; font-weight: 500; color: #111; min-width: 2.4rem; text-align: center; }
+
+.dining_footer { border-top: 1px solid #eee; }
+
+/* ==============================================
+   MOBILE (max-width: 760px)
+   ============================================== */
+@media (max-width: 760px) {
+
+  .dining_section_inner { flex-direction: column; }
+
+  /* 다이닝 메인 섹션 */
+  .dining_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4.5rem 2rem 2rem;
+    min-height: 10rem;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    position: relative;
+  }
+  .dining_section:hover { background: #fafafa; }
+  .dining_section .title p { color: #888; font-size: 1.4rem; line-height: 1; margin-bottom: .6rem; }
+  .dining_section .re_value p.placeholder { color: #111; font-size: 1.8rem; line-height: 1.4; font-weight: 500; }
+  .dining_section .re_value p.selected    { color: #111; font-size: 1.8rem; line-height: 1.4; font-weight: 500; }
+  .dining_section_arrow { display: block; position: absolute; right: 1.6rem; top: 50%; transform: translateY(-50%); }
+
+  .dining_person_row { display: none; }
+  .dining_person_mobile { display: block; flex: 1; }
+  .dining_person_mobile .title p { color: #888; font-size: 1.4rem; line-height: 1; margin-bottom: .6rem; }
+  .dining_person_mobile_val { color: #111; font-size: 1.8rem; font-weight: 500; line-height: 1.4; }
+
+  /* 프로모션 코드 — 다이닝 탭, 중앙 */
+  .dining_promotion_code {
+    display: flex !important;
+    flex-direction: row !important;
+    flex: unset;
+    padding: 2.4rem 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .dining_promotion_code .code { justify-content: center; font-size: 1.4rem; }
+  .dining_promotion_code .code p { font-size: 1.4rem; color: #888; }
+
+  /* 패널 공통 */
+  .dining_panel,
+  .person_panel { width: 100% !important; height: 100%; max-height: 100%; }
+
+  /* 다이닝 선택 패널 */
+  .dining_body { flex-direction: row; border-top: 1px solid #eee; }
+  .dining_hotel_list { width: 11rem; border-right: 1px solid #eee; padding-top: 1.2rem; }
+  .dining_list_label { padding: 0 1.2rem 1rem; font-size: 1.3rem; }
+  .dining_hotel_item { padding: 1.2rem 1.2rem; font-size: 1.4rem; line-height: 1.3; }
+  .dining_hotel_item.active { background: #111; color: #fff; }
+
+  .dining_restaurant_list { padding: 1.6rem; }
+  .dining_card { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 0 0 2.4rem; border-bottom: 1px solid #eee; margin-bottom: 0; background: #fff; }
+  .dining_card:last-child { border-bottom: none; }
+  .dining_card_img { width: 100%; height: 22rem; border-radius: .4rem; }
+  .dining_card_info { width: 100%; padding: 0 .4rem; }
+  .dining_card_category { font-size: 1.4rem; color: #888; margin-bottom: .4rem; }
+  .dining_card_title { font-size: 2rem; font-weight: 600; color: #111; }
+  .dining_card_radio { display: none; }
+
+  .dining_panel .dining_footer,
+  .person_panel .dining_footer { padding: 0; border-top: 1px solid #eee; }
+  .dining_panel .sp_confirm_btn,
+  .person_panel .sp_confirm_btn { max-width: 100%; border-radius: 0; height: 6rem; font-size: 1.8rem; }
+
+  /* 인원수 패널 */
+  .person_desktop { display: none; }
+  .person_mobile  { display: block; padding: 0; border-top: 1px solid #eee; }
+  .person_mobile_list { border-bottom: 1px solid #eee; }
+  .person_mobile_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.2rem 2rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .person_mobile_row:last-child { border-bottom: none; }
+  .person_mobile_label { font-size: 1.6rem; color: #333; }
+
+  .counter_btn { width: 4rem; height: 4rem; background: #f0f0f0; border: none; }
+  .counter_btn:disabled { background: #f0f0f0; opacity: .4; }
+  .counter { gap: 1.6rem; }
+  .counter_val { font-size: 2rem; min-width: 3rem; }
+}

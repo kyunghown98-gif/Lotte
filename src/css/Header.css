@@ -357,7 +357,7 @@ header .header_i .bottom .gnb .dropdown .sub_group ul li a:hover {
    햄버거 버튼
 ════════════════════ */
 .hamburger {
-    display: none; /* display: flex 줄 삭제 */
+    display: none;
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
@@ -388,9 +388,6 @@ header .header_i .bottom .gnb .dropdown .sub_group ul li a:hover {
 }
 .hamburger.is-active span:nth-child(3) {
     transform: translateY(-0.65rem) rotate(-45deg);
-}
-.bs-list{
-    display: none;
 }
 
 /* ════════════════════
@@ -578,6 +575,69 @@ header .header_i .bottom .gnb .dropdown .sub_group ul li a:hover {
     z-index: 2050;
 }
 
+
+/* ════════════════════
+   바텀시트 (★ 미디어쿼리 밖으로 이동된 부분 ★)
+════════════════════ */
+.bs-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 3000;
+}
+
+.bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 1.6rem 1.6rem 0 0;
+    z-index: 3100;
+    padding: 1.2rem 0 4rem;
+    transform: translateY(100%); /* 기본적으로 항상 아래로 숨겨져 있음 */
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    max-height: 70dvh;
+    overflow-y: auto;
+}
+
+.bottom-sheet.is-open {
+    transform: translateY(0);
+}
+
+.bs-handle {
+    width: 4rem;
+    height: 0.4rem;
+    background: #ddd;
+    border-radius: 0.2rem;
+    margin: 0 auto 1.6rem;
+}
+
+.bs-list {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.bs-list li {
+    padding: 1.6rem 2.4rem;
+    font-size: 1.6rem;
+    color: #111;
+    cursor: pointer;
+    border-bottom: 0.1rem solid #f0f0f0;
+    transition: background 0.15s;
+}
+
+.bs-list li:hover {
+    background: #f8f8f8;
+}
+
+.bs-list li:last-child {
+    border-bottom: none;
+}
+
+
 /* ════════════════════
    반응형 분기 760px
 ════════════════════ */
@@ -594,6 +654,12 @@ header .header_i .bottom .gnb .dropdown .sub_group ul li a:hover {
         padding: 2rem 2.4rem;
         min-height: 6rem;
         border-bottom: none;
+    }
+
+      header.panel-open {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
     }
 }
 
@@ -621,65 +687,5 @@ header .header_i .bottom .gnb .dropdown .sub_group ul li a:hover {
 
     header.is-sticky .hamburger.is-active span {
         background-color: #111;
-    }
-
-    /* ════════════════════
-       바텀시트
-    ════════════════════ */
-    .bs-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-        z-index: 3000;
-    }
-
-    .bottom-sheet {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: #fff;
-        border-radius: 1.6rem 1.6rem 0 0;
-        z-index: 3100;
-        padding: 1.2rem 0 4rem;
-        transform: translateY(100%);
-        transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        max-height: 70dvh;
-        overflow-y: auto;
-    }
-
-    .bottom-sheet.is-open {
-        transform: translateY(0);
-    }
-
-    .bs-handle {
-        width: 4rem;
-        height: 0.4rem;
-        background: #ddd;
-        border-radius: 0.2rem;
-        margin: 0 auto 1.6rem;
-    }
-
-    .bs-list {
-        display: block;
-        padding: 0;
-        margin: 0;
-    }
-
-    .bs-list li {
-        padding: 1.6rem 2.4rem;
-        font-size: 1.6rem;
-        color: #111;
-        cursor: pointer;
-        border-bottom: 0.1rem solid #f0f0f0;
-        transition: background 0.15s;
-    }
-
-    .bs-list li:hover {
-        background: #f8f8f8;
-    }
-
-    .bs-list li:last-child {
-        border-bottom: none;
     }
 }

@@ -11,6 +11,7 @@ import Banner from './component/Banner'
 import Notice from './component/Notice'
 import Seo from './component/Seo'
 import Footer from './component/Footer'
+import Reservation from './component/Reservation'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
      <Notice/>
      <Seo/>
      <Footer/>
+     <Reservation/>
     </>
   )
 }
