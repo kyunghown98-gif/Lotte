@@ -674,7 +674,6 @@
     z-index: 300;
     bottom: unset;
     right: unset;
-    pointer-events: auto;
   }
 
   /* 예약하기 원형 버튼 */
