@@ -676,6 +676,14 @@
     right: unset;
   }
 
+    body.re_open .reservation {
+    pointer-events: auto;
+  }
+
+  .re_collapsed_btn.mobile_btn_show {
+    pointer-events: auto;
+  }
+
   /* 예약하기 원형 버튼 */
   .re_collapsed_btn.mobile_btn_show {
     opacity: 1;
